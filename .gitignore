@@ -1,0 +1,6 @@
+.vs
+fucker/bin
+packages
+fucker/obj
+fucker/obj/Debug
+*.pfx
