@@ -1,0 +1,9 @@
+C:\Users\Ad2017\source\repos\fucker\fucker\bin\Release\fucker.exe.config
+C:\Users\Ad2017\source\repos\fucker\fucker\bin\Release\fucker.exe
+C:\Users\Ad2017\source\repos\fucker\fucker\bin\Release\fucker.pdb
+C:\Users\Ad2017\source\repos\fucker\fucker\obj\Release\fucker.Form1.resources
+C:\Users\Ad2017\source\repos\fucker\fucker\obj\Release\fucker.Properties.Resources.resources
+C:\Users\Ad2017\source\repos\fucker\fucker\obj\Release\fucker.csproj.GenerateResource.cache
+C:\Users\Ad2017\source\repos\fucker\fucker\obj\Release\fucker.csproj.CoreCompileInputs.cache
+C:\Users\Ad2017\source\repos\fucker\fucker\obj\Release\fucker.exe
+C:\Users\Ad2017\source\repos\fucker\fucker\obj\Release\fucker.pdb
