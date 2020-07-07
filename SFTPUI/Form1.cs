@@ -25,23 +25,60 @@ namespace SFTPUI
 
         private string dataDir = Environment.ExpandEnvironmentVariables(@"%appdata%\SFTPUIdata");
         private string dataFile = Environment.ExpandEnvironmentVariables(@"%appdata%\SFTPUIdata\auto.txt");
-
+        private bool hidden = false;
+        private bool showMinimize = true;
+        private bool minimize = true;
 
 
         public Form1()
         {
             InitializeComponent();
-            if (File.Exists(dataFile))
-            {
-                string[] data = File.ReadAllLines(dataFile);
-                hostName.Text = data[0];
-                keyPath.Text = data[1];
-                outputDir.Text = data[2];
-            }
-
+            refreshConfig();
         }
 
+        private void refreshConfig()
+        {
+            if (File.Exists(dataFile))
+            {
+                try
+                {
+                    string[] data = File.ReadAllLines(dataFile);
+                    hostName.Text = data[0];
+                    keyPath.Text = data[1];
+                    outputDir.Text = data[2];
 
+                    unixPath.Checked = data[3] == "Unix";
+                    dosPath.Checked = data[3] == "DOS";
+
+                    showMinimize = data[4] == "ShowMinimizeWarning";
+                    minimize = data[5] == "Minimize";
+                }
+                catch (Exception)
+                {
+                    Debug.WriteLine("Using old config file. Generating new.");
+                    saveConfig();
+                }
+            }
+        }
+
+        private void saveConfig()
+        {
+            if (!Directory.Exists(dataDir))
+                Directory.CreateDirectory(dataDir);
+
+            File.WriteAllText(dataFile, hostName.Text + "\n");
+            File.AppendAllText(dataFile, keyPath.Text + "\n");
+            File.AppendAllText(dataFile, outputDir.Text + "\n");
+            File.AppendAllText(dataFile, (unixPath.Checked ? "Unix" : "DOS") + "\n");
+            File.AppendAllText(dataFile, (showMinimize ? "ShowMinimizeWarning" : "HideMinimizeWarning") + "\n");
+            File.AppendAllText(dataFile, (minimize ? "Minimize" : "Close") + "\n");
+        }
+        private void changeConfig(int line, string n)
+        {
+            string[] conf = File.ReadAllLines(dataFile);
+            conf[line - 1] = n;
+            File.WriteAllLines(dataFile, conf);
+        }
 
         private void sourceSelect_Click(object sender, EventArgs e)
         {
@@ -70,12 +107,7 @@ namespace SFTPUI
 
         private void upload_Click(object sender, EventArgs e)
         {
-            if (!Directory.Exists(dataDir))
-                Directory.CreateDirectory(dataDir);
-
-            File.WriteAllText(dataFile, hostName.Text + "\n");
-            File.AppendAllText(dataFile, keyPath.Text + "\n");
-            File.AppendAllText(dataFile, outputDir.Text + "\n");
+            saveConfig();
             string host, username, password, fixedOut = "";
             int port = -1;
 
@@ -185,7 +217,20 @@ namespace SFTPUI
 
         private void close_Click(object sender, EventArgs e)
         {
-            this.Close();
+            refreshConfig();
+            if (!minimize)
+            {
+                this.Close();
+            }
+            if (showMinimize)
+            {
+                MessageBox.Show("App will be minimized to tray. Right click the icon and press 'Exit' to completely close it, or change the 'Minimize' line to 'Close'");
+                showMinimize = false;
+                changeConfig(5, "HideMinimizeWarning");
+            }
+
+            hidden = true;
+            this.Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -206,7 +251,7 @@ namespace SFTPUI
             if (unixPath.Checked)
             {
                 outputDir.Hint = "/path/to/dir";
-            } 
+            }
             else
             {
                 outputDir.Hint = @"D:\path\to\dir";
@@ -222,6 +267,35 @@ namespace SFTPUI
             else
             {
                 label3.Text = "Dir path";
+            }
+        }
+
+
+        private void sftpui_icon_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (hidden && e.Button == MouseButtons.Left)
+            {
+                this.Show();
+                hidden = false;
+            }
+        }
+
+        private void exit_item_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void openConf_Click(object sender, EventArgs e)
+        {
+            Process.Start(dataFile);
+        }
+
+        private void open_item_Click(object sender, EventArgs e)
+        {
+            if (hidden)
+            {
+                this.Show();
+                hidden = false;
             }
         }
     }

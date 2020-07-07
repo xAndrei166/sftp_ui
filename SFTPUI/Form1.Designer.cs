@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.fileSelect = new System.Windows.Forms.Button();
@@ -50,6 +52,11 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.sftpui_icon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.exit_item = new System.Windows.Forms.ToolStripMenuItem();
+            this.nbmenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openConf = new System.Windows.Forms.ToolStripMenuItem();
+            this.open_item = new System.Windows.Forms.ToolStripMenuItem();
             this.keyPass = new SFTPUI.ExTextBox();
             this.userPass = new SFTPUI.ExTextBox();
             this.outputDir = new SFTPUI.ExTextBox();
@@ -57,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.nbmenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -322,6 +330,52 @@
             this.label8.TabIndex = 35;
             this.label8.Text = "Remote path";
             // 
+            // sftpui_icon
+            // 
+            this.sftpui_icon.ContextMenuStrip = this.nbmenu;
+            this.sftpui_icon.Icon = ((System.Drawing.Icon)(resources.GetObject("sftpui_icon.Icon")));
+            this.sftpui_icon.Text = "SFTPUI";
+            this.sftpui_icon.Visible = true;
+            this.sftpui_icon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.sftpui_icon_MouseClick);
+            // 
+            // exit_item
+            // 
+            this.exit_item.ForeColor = System.Drawing.Color.Silver;
+            this.exit_item.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.exit_item.ImageTransparentColor = System.Drawing.Color.White;
+            this.exit_item.Name = "exit_item";
+            this.exit_item.Size = new System.Drawing.Size(134, 22);
+            this.exit_item.Text = "Exit";
+            this.exit_item.Click += new System.EventHandler(this.exit_item_Click);
+            // 
+            // nbmenu
+            // 
+            this.nbmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.nbmenu.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nbmenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.open_item,
+            this.exit_item,
+            this.openConf});
+            this.nbmenu.Name = "nbmenu";
+            this.nbmenu.ShowImageMargin = false;
+            this.nbmenu.Size = new System.Drawing.Size(135, 70);
+            // 
+            // openConf
+            // 
+            this.openConf.ForeColor = System.Drawing.Color.Silver;
+            this.openConf.Name = "openConf";
+            this.openConf.Size = new System.Drawing.Size(134, 22);
+            this.openConf.Text = "Open config file";
+            this.openConf.Click += new System.EventHandler(this.openConf_Click);
+            // 
+            // open_item
+            // 
+            this.open_item.ForeColor = System.Drawing.Color.Silver;
+            this.open_item.Name = "open_item";
+            this.open_item.Size = new System.Drawing.Size(134, 22);
+            this.open_item.Text = "Show";
+            this.open_item.Click += new System.EventHandler(this.open_item_Click);
+            // 
             // keyPass
             // 
             this.keyPass.BackColor = System.Drawing.Color.DarkGray;
@@ -403,6 +457,7 @@
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.Silver;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(335, 280);
             this.Name = "Form1";
@@ -414,6 +469,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.nbmenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -446,6 +502,11 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private ExTextBox keyPass;
+        private System.Windows.Forms.NotifyIcon sftpui_icon;
+        private System.Windows.Forms.ContextMenuStrip nbmenu;
+        private System.Windows.Forms.ToolStripMenuItem exit_item;
+        private System.Windows.Forms.ToolStripMenuItem openConf;
+        private System.Windows.Forms.ToolStripMenuItem open_item;
     }
 }
 
