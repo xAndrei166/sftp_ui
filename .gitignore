@@ -1,6 +1,6 @@
 .vs
-fucker/bin
+SFTPUI/bin
 packages
-fucker/obj
-fucker/obj/Debug
+SFTPUI/obj
+SFTPUI/obj/Debug
 *.pfx
