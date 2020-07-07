@@ -5,4 +5,4 @@ A shitty SFTP UI made by ad2017gd
 
 get fresh releases at https://ad2017.xyz/SFTPUI/SFTPUI.zip with autoupdate feature or something
 
-(note that the current version(s) were made in a single day so expect bugs)
+(note that the current version was made in a single day so expect bugs)
