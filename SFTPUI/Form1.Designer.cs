@@ -330,6 +330,7 @@
             this.keyPass.Hint = "*leave empty for none*";
             this.keyPass.Location = new System.Drawing.Point(117, 135);
             this.keyPass.Name = "keyPass";
+            this.keyPass.PasswordChar = '*';
             this.keyPass.Size = new System.Drawing.Size(189, 26);
             this.keyPass.TabIndex = 36;
             this.keyPass.TabStop = false;
@@ -342,6 +343,7 @@
             this.userPass.Hint = "passwd123";
             this.userPass.Location = new System.Drawing.Point(117, 71);
             this.userPass.Name = "userPass";
+            this.userPass.PasswordChar = '*';
             this.userPass.Size = new System.Drawing.Size(189, 26);
             this.userPass.TabIndex = 22;
             this.userPass.TabStop = false;
