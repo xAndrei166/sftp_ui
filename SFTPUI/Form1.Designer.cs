@@ -41,7 +41,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.close = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.uploadFile = new System.Windows.Forms.RadioButton();
@@ -53,18 +52,20 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.sftpui_icon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.exit_item = new System.Windows.Forms.ToolStripMenuItem();
             this.nbmenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.openConf = new System.Windows.Forms.ToolStripMenuItem();
             this.open_item = new System.Windows.Forms.ToolStripMenuItem();
+            this.exit_item = new System.Windows.Forms.ToolStripMenuItem();
+            this.openConf = new System.Windows.Forms.ToolStripMenuItem();
+            this.scrn = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.keyPass = new SFTPUI.ExTextBox();
             this.userPass = new SFTPUI.ExTextBox();
             this.outputDir = new SFTPUI.ExTextBox();
             this.hostName = new SFTPUI.ExTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.nbmenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -200,16 +201,6 @@
             this.label2.TabIndex = 18;
             this.label2.Text = "Key passwd";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(346, 23);
-            this.pictureBox1.TabIndex = 24;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.moveWindow);
-            // 
             // close
             // 
             this.close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
@@ -217,7 +208,7 @@
             this.close.FlatAppearance.BorderSize = 0;
             this.close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.close.ForeColor = System.Drawing.Color.Red;
-            this.close.Location = new System.Drawing.Point(345, 0);
+            this.close.Location = new System.Drawing.Point(381, 0);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(29, 23);
             this.close.TabIndex = 26;
@@ -338,16 +329,6 @@
             this.sftpui_icon.Visible = true;
             this.sftpui_icon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.sftpui_icon_MouseClick);
             // 
-            // exit_item
-            // 
-            this.exit_item.ForeColor = System.Drawing.Color.Silver;
-            this.exit_item.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.exit_item.ImageTransparentColor = System.Drawing.Color.White;
-            this.exit_item.Name = "exit_item";
-            this.exit_item.Size = new System.Drawing.Size(134, 22);
-            this.exit_item.Text = "Exit";
-            this.exit_item.Click += new System.EventHandler(this.exit_item_Click);
-            // 
             // nbmenu
             // 
             this.nbmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -360,6 +341,24 @@
             this.nbmenu.ShowImageMargin = false;
             this.nbmenu.Size = new System.Drawing.Size(135, 70);
             // 
+            // open_item
+            // 
+            this.open_item.ForeColor = System.Drawing.Color.Silver;
+            this.open_item.Name = "open_item";
+            this.open_item.Size = new System.Drawing.Size(134, 22);
+            this.open_item.Text = "Show";
+            this.open_item.Click += new System.EventHandler(this.open_item_Click);
+            // 
+            // exit_item
+            // 
+            this.exit_item.ForeColor = System.Drawing.Color.Silver;
+            this.exit_item.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.exit_item.ImageTransparentColor = System.Drawing.Color.White;
+            this.exit_item.Name = "exit_item";
+            this.exit_item.Size = new System.Drawing.Size(134, 22);
+            this.exit_item.Text = "Exit";
+            this.exit_item.Click += new System.EventHandler(this.exit_item_Click);
+            // 
             // openConf
             // 
             this.openConf.ForeColor = System.Drawing.Color.Silver;
@@ -368,13 +367,29 @@
             this.openConf.Text = "Open config file";
             this.openConf.Click += new System.EventHandler(this.openConf_Click);
             // 
-            // open_item
+            // scrn
             // 
-            this.open_item.ForeColor = System.Drawing.Color.Silver;
-            this.open_item.Name = "open_item";
-            this.open_item.Size = new System.Drawing.Size(134, 22);
-            this.open_item.Text = "Show";
-            this.open_item.Click += new System.EventHandler(this.open_item_Click);
+            this.scrn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.scrn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.scrn.ForeColor = System.Drawing.Color.Black;
+            this.scrn.Image = ((System.Drawing.Image)(resources.GetObject("scrn.Image")));
+            this.scrn.Location = new System.Drawing.Point(367, 249);
+            this.scrn.Name = "scrn";
+            this.scrn.Size = new System.Drawing.Size(28, 26);
+            this.scrn.TabIndex = 37;
+            this.scrn.TabStop = false;
+            this.scrn.UseVisualStyleBackColor = false;
+            this.scrn.Click += new System.EventHandler(this.scrn_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(384, 23);
+            this.pictureBox1.TabIndex = 24;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.moveWindow);
             // 
             // keyPass
             // 
@@ -398,7 +413,7 @@
             this.userPass.Location = new System.Drawing.Point(117, 71);
             this.userPass.Name = "userPass";
             this.userPass.PasswordChar = '*';
-            this.userPass.Size = new System.Drawing.Size(189, 26);
+            this.userPass.Size = new System.Drawing.Size(190, 26);
             this.userPass.TabIndex = 22;
             this.userPass.TabStop = false;
             // 
@@ -431,7 +446,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(371, 361);
+            this.ClientSize = new System.Drawing.Size(410, 361);
+            this.Controls.Add(this.userPass);
+            this.Controls.Add(this.scrn);
             this.Controls.Add(this.keyPass);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -440,7 +457,6 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.close);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.userPass);
             this.Controls.Add(this.outputDir);
             this.Controls.Add(this.hostName);
             this.Controls.Add(this.label2);
@@ -464,12 +480,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SFTPUI";
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.nbmenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -507,6 +524,7 @@
         private System.Windows.Forms.ToolStripMenuItem exit_item;
         private System.Windows.Forms.ToolStripMenuItem openConf;
         private System.Windows.Forms.ToolStripMenuItem open_item;
+        private System.Windows.Forms.Button scrn;
     }
 }
 

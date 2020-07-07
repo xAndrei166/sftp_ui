@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace SFTPUI
@@ -28,6 +30,7 @@ namespace SFTPUI
         private bool hidden = false;
         private bool showMinimize = true;
         private bool minimize = true;
+        private Random rnd = new Random();
 
 
         public Form1()
@@ -36,8 +39,17 @@ namespace SFTPUI
             refreshConfig();
         }
 
+        public static string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+
         private void refreshConfig()
         {
+            if (!Directory.Exists(dataDir + @"\tmp\"))
+                Directory.CreateDirectory(dataDir + @"\tmp\");
+            
             if (File.Exists(dataFile))
             {
                 try
@@ -58,7 +70,15 @@ namespace SFTPUI
                     Debug.WriteLine("Using old config file. Generating new.");
                     saveConfig();
                 }
+            } else
+            {
+                saveConfig();
             }
+
+            Directory.Delete(dataDir + "\\tmp", true);
+            Directory.CreateDirectory(dataDir + "\\tmp");
+            
+
         }
 
         private void saveConfig()
@@ -297,6 +317,46 @@ namespace SFTPUI
                 this.Show();
                 hidden = false;
             }
+        }
+
+        private void scrn_Click(object sender, EventArgs e)
+        {
+            int x1, y1, x2, y2 = 0;
+            int state = 0;
+            Rectangle bounds = Screen.GetBounds(Point.Empty);
+            using (Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height))
+            {
+                using (Graphics g = Graphics.FromImage(bitmap))
+                {
+                    g.CopyFromScreen(Point.Empty, Point.Empty, bounds.Size);
+                }
+                
+
+                var img = dataDir + @"\tmp\SFTPUI_" + Base64Encode((rnd.Next(100000000, 999999999).ToString())) + ".jpg";
+                if (!Directory.Exists(dataDir + @"\tmp\"))
+                    Directory.CreateDirectory(dataDir + @"\tmp\");
+                bitmap.Save(img, ImageFormat.Jpeg);
+                sourcePath.BackColor = Color.LightPink;
+                sourcePath.Text = img;
+                var timer1 = new System.Windows.Forms.Timer();
+                timer1.Tick += new EventHandler(delegate(object send, EventArgs ev)
+                {
+                    sourcePath.BackColor = Color.DarkGray;
+                    
+                    ((System.Windows.Forms.Timer)send).Stop();
+                });
+                timer1.Interval = 500; // in miliseconds
+                timer1.Start();
+
+            }
+
+
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Directory.Delete(dataDir + "\\tmp", true);
+            Directory.CreateDirectory(dataDir + "\\tmp");
         }
     }
     public class ExTextBox : TextBox
