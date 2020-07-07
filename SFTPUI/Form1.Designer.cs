@@ -38,23 +38,22 @@
             this.keySelect = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.keyPass = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.close = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.userPass = new SFTPUI.ExTextBox();
-            this.outputDir = new SFTPUI.ExTextBox();
-            this.hostName = new SFTPUI.ExTextBox();
             this.uploadFile = new System.Windows.Forms.RadioButton();
             this.uploadDir = new System.Windows.Forms.RadioButton();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.dosPath = new System.Windows.Forms.RadioButton();
             this.unixPath = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.keyPass = new SFTPUI.ExTextBox();
+            this.userPass = new SFTPUI.ExTextBox();
+            this.outputDir = new SFTPUI.ExTextBox();
+            this.hostName = new SFTPUI.ExTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -78,9 +77,9 @@
             this.label3.Location = new System.Drawing.Point(3, 251);
             this.label3.Name = "label3";
             this.label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label3.Size = new System.Drawing.Size(92, 20);
+            this.label3.Size = new System.Drawing.Size(70, 20);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Local file/dir";
+            this.label3.Text = "File path";
             // 
             // fileSelect
             // 
@@ -182,18 +181,6 @@
             this.label6.TabIndex = 16;
             this.label6.Text = "User passwd";
             // 
-            // keyPass
-            // 
-            this.keyPass.BackColor = System.Drawing.Color.DarkGray;
-            this.keyPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.keyPass.ForeColor = System.Drawing.Color.White;
-            this.keyPass.Location = new System.Drawing.Point(117, 135);
-            this.keyPass.Name = "keyPass";
-            this.keyPass.PasswordChar = '*';
-            this.keyPass.Size = new System.Drawing.Size(189, 26);
-            this.keyPass.TabIndex = 19;
-            this.keyPass.TabStop = false;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -247,42 +234,6 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // userPass
-            // 
-            this.userPass.BackColor = System.Drawing.Color.DarkGray;
-            this.userPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userPass.ForeColor = System.Drawing.Color.White;
-            this.userPass.Hint = "bigpp123";
-            this.userPass.Location = new System.Drawing.Point(117, 71);
-            this.userPass.Name = "userPass";
-            this.userPass.Size = new System.Drawing.Size(189, 26);
-            this.userPass.TabIndex = 22;
-            this.userPass.TabStop = false;
-            // 
-            // outputDir
-            // 
-            this.outputDir.BackColor = System.Drawing.Color.DarkGray;
-            this.outputDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputDir.ForeColor = System.Drawing.Color.White;
-            this.outputDir.Hint = "C:\\path\\to\\dir";
-            this.outputDir.Location = new System.Drawing.Point(118, 281);
-            this.outputDir.Name = "outputDir";
-            this.outputDir.Size = new System.Drawing.Size(189, 26);
-            this.outputDir.TabIndex = 21;
-            this.outputDir.TabStop = false;
-            // 
-            // hostName
-            // 
-            this.hostName.BackColor = System.Drawing.Color.DarkGray;
-            this.hostName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hostName.ForeColor = System.Drawing.Color.White;
-            this.hostName.Hint = "user@host:port";
-            this.hostName.Location = new System.Drawing.Point(117, 42);
-            this.hostName.Name = "hostName";
-            this.hostName.Size = new System.Drawing.Size(189, 26);
-            this.hostName.TabIndex = 20;
-            this.hostName.TabStop = false;
-            // 
             // uploadFile
             // 
             this.uploadFile.AutoSize = true;
@@ -294,6 +245,7 @@
             this.uploadFile.TabStop = true;
             this.uploadFile.Text = "File";
             this.uploadFile.UseVisualStyleBackColor = true;
+            this.uploadFile.CheckedChanged += new System.EventHandler(this.uploadFile_CheckedChanged);
             // 
             // uploadDir
             // 
@@ -328,6 +280,7 @@
             this.unixPath.TabStop = true;
             this.unixPath.Text = "Unix (/)";
             this.unixPath.UseVisualStyleBackColor = true;
+            this.unixPath.CheckedChanged += new System.EventHandler(this.unixPath_CheckedChanged);
             // 
             // panel1
             // 
@@ -369,12 +322,61 @@
             this.label8.TabIndex = 35;
             this.label8.Text = "Remote path";
             // 
+            // keyPass
+            // 
+            this.keyPass.BackColor = System.Drawing.Color.DarkGray;
+            this.keyPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.keyPass.ForeColor = System.Drawing.Color.White;
+            this.keyPass.Hint = "*leave empty for none*";
+            this.keyPass.Location = new System.Drawing.Point(117, 135);
+            this.keyPass.Name = "keyPass";
+            this.keyPass.Size = new System.Drawing.Size(189, 26);
+            this.keyPass.TabIndex = 36;
+            this.keyPass.TabStop = false;
+            // 
+            // userPass
+            // 
+            this.userPass.BackColor = System.Drawing.Color.DarkGray;
+            this.userPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userPass.ForeColor = System.Drawing.Color.White;
+            this.userPass.Hint = "passwd123";
+            this.userPass.Location = new System.Drawing.Point(117, 71);
+            this.userPass.Name = "userPass";
+            this.userPass.Size = new System.Drawing.Size(189, 26);
+            this.userPass.TabIndex = 22;
+            this.userPass.TabStop = false;
+            // 
+            // outputDir
+            // 
+            this.outputDir.BackColor = System.Drawing.Color.DarkGray;
+            this.outputDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outputDir.ForeColor = System.Drawing.Color.White;
+            this.outputDir.Hint = "/path/to/dir";
+            this.outputDir.Location = new System.Drawing.Point(118, 281);
+            this.outputDir.Name = "outputDir";
+            this.outputDir.Size = new System.Drawing.Size(189, 26);
+            this.outputDir.TabIndex = 21;
+            this.outputDir.TabStop = false;
+            // 
+            // hostName
+            // 
+            this.hostName.BackColor = System.Drawing.Color.DarkGray;
+            this.hostName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hostName.ForeColor = System.Drawing.Color.White;
+            this.hostName.Hint = "user@host:port";
+            this.hostName.Location = new System.Drawing.Point(117, 42);
+            this.hostName.Name = "hostName";
+            this.hostName.Size = new System.Drawing.Size(189, 26);
+            this.hostName.TabIndex = 20;
+            this.hostName.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(371, 361);
+            this.Controls.Add(this.keyPass);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.panel2);
@@ -385,7 +387,6 @@
             this.Controls.Add(this.userPass);
             this.Controls.Add(this.outputDir);
             this.Controls.Add(this.hostName);
-            this.Controls.Add(this.keyPass);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.keyPath);
@@ -427,7 +428,6 @@
         private System.Windows.Forms.Button keySelect;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox keyPass;
         private System.Windows.Forms.Label label2;
         private ExTextBox hostName;
         private ExTextBox outputDir;
@@ -437,13 +437,13 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RadioButton uploadFile;
         private System.Windows.Forms.RadioButton uploadDir;
-        private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.RadioButton dosPath;
         private System.Windows.Forms.RadioButton unixPath;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private ExTextBox keyPass;
     }
 }
 

@@ -201,7 +201,29 @@ namespace SFTPUI
             }
         }
 
+        private void unixPath_CheckedChanged(object sender, EventArgs e)
+        {
+            if (unixPath.Checked)
+            {
+                outputDir.Hint = "/path/to/dir";
+            } 
+            else
+            {
+                outputDir.Hint = @"D:\path\to\dir";
+            }
+        }
 
+        private void uploadFile_CheckedChanged(object sender, EventArgs e)
+        {
+            if (uploadFile.Checked)
+            {
+                label3.Text = "File path";
+            }
+            else
+            {
+                label3.Text = "Dir path";
+            }
+        }
     }
     public class ExTextBox : TextBox
     {
